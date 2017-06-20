@@ -1,0 +1,81 @@
+{% load static %}
+<fieldset class="module aligned {{ fieldset.classes }}">
+    {% if fieldset.name %}<h2>{{ fieldset.name }}</h2>{% endif %}
+    {% if fieldset.description %}
+        <div class="description">{{ fieldset.description|safe }}</div>
+    {% endif %}
+    <div style="width: 45%; display: inline-block;">
+    {% for line in fieldset %}
+        <div class="form-row{% if line.fields|length_is:'1' and line.errors %} errors{% endif %}{% if not line.has_visible_field %} hidden{% endif %}{% for field in line %}{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% endfor %}" >
+            {% if line.fields|length_is:'1' %}{{ line.errors }}{% endif %}
+            {% for field in line %}
+                <div{% if not line.fields|length_is:'1' %} class="field-box{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}"{% elif field.is_checkbox %} class="checkbox-row"{% endif %}>
+                    {% if not line.fields|length_is:'1' and not field.is_readonly %}{{ field.errors }}{% endif %}
+                    {% if field.is_checkbox %}
+                        {{ field.field }}{{ field.label_tag }}
+                    {% else %}
+                        {{ field.label_tag }}
+                        {% if field.is_readonly %}
+                            <p>{{ field.contents }}</p>
+                        {% else %}
+                            {{ field.field }}
+                        {% endif %}
+                    {% endif %}
+                    {% if field.field.help_text %}
+                        <p class="help">{{ field.field.help_text|safe }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    </div>
+    <div style="margin-left:5%; width: 45%; display: inline-block">
+        <div id="map" style="width:100%;height:450px;">
+        </div>
+    </div>
+
+    <script src="{% static 'plugins/jQuery/jquery-2.2.3.min.js'%}"></script>
+    <script>
+        var map;
+        var marker = null;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: new google.maps.LatLng(50.454090,30.524743),
+                zoom: 9,
+                disableDoubleClickZoom: true
+            });
+
+            var drawingManager = new google.maps.drawing.DrawingManager({
+                drawingControlOptions: {
+                    position: google.maps.ControlPosition.TOP_CENTER,
+                    drawingModes: [
+                        google.maps.drawing.OverlayType.MARKER
+                    ]
+                }
+            });
+            drawingManager.setMap(map);
+
+            google.maps.event.addListener(drawingManager, 'markercomplete', function (data) {
+                if (marker) marker.setMap(null);
+                marker = data;
+                updateAddress(data)
+            });
+
+            function updateAddress(marker) {
+                $.get("https://maps.googleapis.com/maps/api/geocode/json?&key={{ api_key }}&latlng=" +
+                    marker.position.lat() + "," + marker.position.lng() + "&language=uk&sensor=true", function (data) {
+                    if (data.status == "OK" && data.results.length > 0) {
+                        $('#id_map_points-0-map_lat').val(data.results[0].geometry.location.lat);
+                        $('#id_map_points-0-map_lon').val(data.results[0].geometry.location.lng)
+{#                        $('#id_address').val(data.results[0].formatted_address);#}
+                    }
+                });
+            }
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgB01-zSMVafLSKSLv5WHDXmrg6-8RObs&libraries&libraries=drawing&amp;callback=initMap">
+    </script>
+</fieldset>

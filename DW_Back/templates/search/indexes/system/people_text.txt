@@ -1,0 +1,5 @@
+{{ object.title }}
+{{ object.region }}
+{{ object.category.title }}
+{{ object.short_description }}
+{{ object.description }}

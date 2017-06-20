@@ -1,0 +1,5 @@
+{{ object.title }}
+{{ object.short_description }}
+{{ object.description }}
+{{ object.center_city }}
+

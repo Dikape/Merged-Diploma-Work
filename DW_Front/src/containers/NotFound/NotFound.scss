@@ -1,0 +1,29 @@
+:global {
+  @import "../../containers/App/buttons";
+  .not-found {
+    padding: 66px 10px;
+    .title {
+      font-weight: bold;
+      border-bottom: solid 1px;
+      font-size: 16px;
+    }
+    .item {
+      background: #eaeaea;
+      padding: 10px;
+      border: solid 1px;
+      margin: 10px 0px;
+      .type {
+        display: inline-block;
+        .type {
+          font-weight: bold;
+        }
+      }
+      .description {
+        text-decoration: underline;
+        margin-left: 10px;
+        color: black;
+        display: inline-block;
+      }
+    }
+  }
+}

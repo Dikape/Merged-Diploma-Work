@@ -1,0 +1,61 @@
+:global {
+  body {
+    padding: 0px;
+  }
+  .home-page-container {
+    .hero {
+      background: linear-gradient(rgba(18,18,18,0.6), rgba(18,18,18,0.5)), url('../../../static/img/home/hero.png');
+      height: 100vh;
+      background-size: cover;
+      background: linear-gradient(rgba(42, 51, 88, 0.6), rgba(42, 19, 76, 0.5)), url('../../../static/img/home/hero.png');
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .hero-information {
+        .title {
+          color: white;
+          font-weight: bold;
+          text-align: center;
+          font-size: 80px;
+          font-family: "Messina Sans",Helvetica,Arial;
+        }
+      }
+    }
+    .content {
+      margin: auto;
+      .not-pair, .pair {
+        //margin: 50px auto 0px;
+        width: 100%;
+        padding: 25px 20%;
+        height: 350px;
+        display: flex;
+        .left-part, .right-part {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          width: 50%;
+          img {
+            margin: 0;
+            max-width: 100%;
+            max-height: 260px;
+          }
+        }
+        .title {
+          font-size: 34px;
+          font-weight: 600;
+          letter-spacing: 0px;
+          line-height: 34px;
+        }
+        .text {
+          font-size: 17px;
+        }
+      }
+      .pair {
+        background: #cbd4dc;
+      }
+      .to-center {
+        justify-content: center;
+      }
+    }
+  }
+}

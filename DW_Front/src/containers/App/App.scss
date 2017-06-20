@@ -1,0 +1,10 @@
+:global {
+  body {
+    padding: 0 !important;
+  }
+  .global-application-container {
+    @import "./header";
+    @import "./buttons";
+    @import "./footer";
+  }
+}

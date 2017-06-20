@@ -1,0 +1,34 @@
+:global {
+  .registration-modal {
+    color: black;
+    width: 300px;
+    .form-title {
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    form {
+      .input-field {
+        .label {
+          color: black;
+          font-weight: normal;
+          font-size: 14px;
+          margin: 0;
+          padding: 0;
+        }
+        .field {
+          display: inline-block;
+          width: 100%;
+          .input-text {
+            input {
+              width: 100%;
+              padding: 5px 10px;
+              border: solid 1px black;
+            }
+          }
+        }
+      }
+    }
+  }
+}

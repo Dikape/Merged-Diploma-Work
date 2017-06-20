@@ -1,0 +1,5 @@
+{{ object.title }}
+{{ object.address }}
+{{ object.contacts }}
+{{ object.ownership.title }}
+

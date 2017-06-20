@@ -1,0 +1,67 @@
+:global {
+  .global-maps-container {
+    padding-top: 56px;
+    .map-container {
+      width: 80%;
+      height: 80vh;
+      display: inline-block;
+      .info-container {
+        width: 250px;
+        .name {
+          font-size: 14px;
+          font-weight: 500;
+          text-decoration: underline;
+          margin-bottom: 5px;
+        }
+        .title {
+          font-weight: 500;
+          display: inline-block;
+          margin-right: 10px;
+          margin-top: 5px;
+        }
+      }
+    }
+    .filters-container {
+      width: 20%;
+      display: inline-block;
+      float: right;
+      min-height: 80vh;
+      background: #eaeaea;
+      .title {
+        font-size: 15px;
+        letter-spacing: 1px;
+        text-align: center;
+        background: #303540;
+        color: white;
+        font-weight: bold;
+        padding: 5px;
+      }
+      .regions-list, .categories-list, .people-categories-list {
+        .region-item, .category-item, .people-category-item {
+          padding: 5px 20px;
+          background-color: #eed5fd;
+          border-bottom: solid 1px;
+          &:hover {
+            cursor: pointer;
+            background-color: #cbc4d0;
+          }
+          &.active {
+            background-color: #cbc4d0;
+            font-weight: bold;
+          }
+          .image-place {
+            width: 36px;
+            height: 36px;
+            display: inline-block;
+            margin-right: 10px;
+            img {
+              margin: 0px;
+              max-width: 100%;
+              max-height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
